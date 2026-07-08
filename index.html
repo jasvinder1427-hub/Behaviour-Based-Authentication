@@ -1,0 +1,111 @@
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BehaviorAuth</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+  <div class="blob blob4"></div>
+  <div class="mesh-overlay"></div>
+
+  <!-- LOGIN SCREEN -->
+  <div class="screen" id="loginScreen">
+    <div class="glass-card" id="loginCard">
+
+      <div class="top-badge">
+        <span class="pulse-ring"></span>
+        <span class="badge-icon">&#11041;</span>
+        <span>BehaviorAuth</span>
+      </div>
+
+      <h1 class="headline">Verify <span class="grad-text">yourself.</span></h1>
+      <p class="subline">We learn how you type, move, and think.</p>
+
+      <div class="fields">
+
+        <!-- USERNAME with live validation -->
+        <div class="field-wrap" id="usernameWrap">
+          <span class="field-icon">&#9673;</span>
+          <input
+            type="text"
+            id="username"
+            placeholder="Username (a–z, 0–9 only)"
+            autocomplete="off"
+            maxlength="20"
+            oninput="validateUsername(this)"
+          />
+          <span class="field-status" id="usernameStatus"></span>
+        </div>
+        <div class="field-hint" id="usernameHint"></div>
+
+        <!-- PASSWORD -->
+        <div class="field-wrap">
+          <span class="field-icon">&#9672;</span>
+          <input type="password" id="password" placeholder="Password" autocomplete="off"/>
+          <button class="eye-toggle" onclick="togglePass()">&#9679;</button>
+        </div>
+
+      </div>
+
+      <button class="cta-btn" onclick="handleLogin()">
+        <span class="cta-label">Authenticate</span>
+        <span class="cta-arrow">&#8594;</span>
+        <div class="cta-shine"></div>
+      </button>
+
+      <div class="metrics">
+        <div class="metric-chip">
+          <span class="chip-icon">&#9000;</span>
+          <span id="ksCount">0</span>
+        </div>
+        <div class="chip-div"></div>
+        <div class="metric-chip">
+          <span class="chip-icon">&#10761;</span>
+          <span id="msCount">0</span>
+        </div>
+        <div class="chip-div"></div>
+        <div class="metric-chip">
+          <span class="chip-icon">&#9719;</span>
+          <span id="tmVal">0s</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div class="screen hidden" id="resultScreen">
+    <div class="glass-card result-card" id="resultCard">
+      <div class="result-glow" id="resultGlow"></div>
+      <div class="result-emoji" id="resultEmoji">&#10003;</div>
+      <h2 class="result-title" id="resultTitle">Access Granted</h2>
+      <p class="result-sub" id="resultSub">Your behavioral profile matched.</p>
+
+      <div class="score-section" id="scoreSection">
+        <div class="score-label-row">
+          <span class="score-tag">SIMILARITY SCORE</span>
+          <span class="score-num" id="scorePct">&#8212;</span>
+        </div>
+        <div class="score-track">
+          <div class="score-fill" id="scoreFill"></div>
+        </div>
+      </div>
+
+      <button class="cta-btn secondary-cta" onclick="resetAll()">
+        <span class="cta-label">Try Again</span>
+        <span class="cta-arrow">&#8635;</span>
+        <div class="cta-shine"></div>
+      </button>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>
